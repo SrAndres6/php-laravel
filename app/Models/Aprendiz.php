@@ -13,5 +13,8 @@ class Aprendiz extends Model
         'documento',
         'correo',
         'ficha_id',
+        'apellido',
+        'asignatura',
+        'jornada',
     ];
 }

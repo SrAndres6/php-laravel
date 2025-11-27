@@ -17,6 +17,7 @@ class StoreUpdateAprendizRequest extends FormRequest
         $id = $this->route('aprendiz')?->id;
         return [
             'nombre'    => ['required', 'string', 'max:120'],
+            'apellido'=> ['required','string','max:50'],
             'documento' => [
                 'required', 'string', 'max:40',
                 Rule::unique('aprendices', 'documento')->ignore($id),
@@ -26,18 +27,23 @@ class StoreUpdateAprendizRequest extends FormRequest
                 Rule::unique('aprendices', 'correo')->ignore($id),
             ],
             'ficha_id'  => ['nullable', 'integer'],
+            'asignatura'=> ['required','string','max:50'],
+            'jornada'=> ['required','string','max:50']
         ];
     }
     public function messages(): array
     {
         return [
             'nombre.required'    => 'El nombre es obligatorio.',
+            'apellido.required'=> 'El apellido es obligatorio',
             'documento.required' => 'El documento es obligatorio.',
             'documento.unique'   => 'El documento ya existe.',
             'correo.required'    => 'El correo es obligatorio.',
             'correo.email'       => 'El correo no es válido.',
             'correo.unique'      => 'El correo ya existe.',
             'ficha_id.integer'   => 'La ficha debe ser numérica.',
+            'asignatura.integer'=> 'Ingrese una asignatura',
+            'jornada.integer'=> 'Ingrese una jornada'
         ];
     }
 }
